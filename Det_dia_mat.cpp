@@ -1,4 +1,4 @@
-//Write a program to find the determinant of Diagonal matrix;
+//Write a program to find the determinant of Diagonal matrix
 #include<iostream>
 using namespace std;
 
