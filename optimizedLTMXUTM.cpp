@@ -116,7 +116,18 @@ int main(){
     cout<<endl;
 
     resMat(c,n1);
+    
+    for(int i = 0; i < n1; i++){
+        delete[] a[i];
+        delete[] c[i];
+    }
+    delete[] a;
+    delete[] c;
 
+    for(int i = 0; i < n2; i++){
+        delete[] b[i];
+    }
+        delete[] b;
 
     return 0;
 }
