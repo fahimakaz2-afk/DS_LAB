@@ -1,4 +1,4 @@
-//Matrix read,print,mul using class
+//Matrix read,print,* operataor, using class
 #include <iostream>
 using namespace std;
 
@@ -11,7 +11,7 @@ private:
 public:
     void read(int r, int c);
     void print();
-    void mul(Matrix m1, Matrix m2);
+    Matrix operator*(Matrix m);
 };
 
 void Matrix::read(int r, int c) {
@@ -34,24 +34,22 @@ void Matrix::print() {
     }
 }
 
-void Matrix::mul(Matrix m1, Matrix m2) {
-    if (m1.col != m2.row) {
-        cout << "Multiplication not possible!!!" << endl;
-        return;
+Matrix Matrix::operator*(Matrix m){
+    Matrix temp;
+    if(col != m.row){
+        cout<<"Matrix not possible";
     }
-
-    row = m1.row;
-    col = m2.col;
-
-
-    for (int i = 0; i < row; i++) {
-        for (int j = 0; j < col; j++) {
-            a[i][j] = 0;
-            for (int k = 0; k < m1.col; k++) {
-                a[i][j] += m1.a[i][k] * m2.a[k][j];
+    temp.row  = row;
+    temp.col = m.col;
+    for(int i = 0;  i< row; i++){
+        for(int j = 0; j< m.col; j++){
+            temp.a[i][j] = 0;
+            for(int k = 0; k< col; k++){
+                temp.a[i][j]+= a[i][k]+m.a[k][j];
             }
         }
     }
+    return temp;
 }
 
 int main() {
@@ -75,7 +73,7 @@ int main() {
     cout << "\nEnter elements for Matrix 2:\n";
     m2.read(r2, c2);
 
-    m3.mul(m1, m2);
+    m3 = m1*m2;
 
     cout << "\nResultant Matrix:\n";
     m3.print();
