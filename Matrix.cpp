@@ -1,3 +1,4 @@
+//Matrix read,print,mul using pointers
 #include<iostream>
 using namespace std;
 
