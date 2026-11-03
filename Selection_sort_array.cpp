@@ -1,6 +1,7 @@
 //Selection sort using array
 #include<iostream>
 #include <algorithm>
+
 using namespace std;
 
 void selection_sort(int a[], int n){
@@ -24,9 +25,11 @@ void print_array(int a[], int n){
     cout << endl;
 }
 
+
+
 int  main(){
     int n;
-    cout << "Enter the no. of elements: ";
+    cout << "Enter the no. of elements in array: ";
     cin >> n;
 
     int*a = new int[n];
