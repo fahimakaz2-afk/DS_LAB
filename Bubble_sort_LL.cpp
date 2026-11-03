@@ -34,9 +34,9 @@ void Linkedlist:: insert(int val){
         head = newNode;
         return;
     }
-    Node* temp = NULL;
+    Node* temp = head;
 
-    while(temp != NULL){
+    while(temp->next != NULL){
         temp = temp->next;
     }
 
@@ -78,6 +78,7 @@ void Linkedlist::display(){
         cout << temp->data << "->";
         temp = temp->next;
     }
+    cout<<"NULL"<<endl;
 }
 
 int main(){
