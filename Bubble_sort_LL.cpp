@@ -80,5 +80,25 @@ void Linkedlist::display(){
     }
 }
 
+int main(){
+    Linkedlist l1;
+    l1.insert(5);
+    l1.insert(2);
+    l1.insert(8);
+    l1.insert(6);
+    l1.insert(0);
+
+    l1.display();
+
+    cout<<endl;
+
+    cout<<"------Sorted List------"<<endl;
+
+    l1.bubble_sort();
+
+    l1.display();
+
+    return 0;
+}
         
 
