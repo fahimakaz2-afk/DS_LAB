@@ -5,8 +5,10 @@ using namespace std;
 int sequential_search(int a[], int n, int x){
     int index = -1;
     for(int i = 0; i < n; i++){
-        if(a[i] == x)
+        if(a[i] == x){
             index = i;
+            break;
+        }
     }
     return index;
 }
