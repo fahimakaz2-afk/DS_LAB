@@ -1,4 +1,4 @@
-//Construct Binary tree , Inorder Traversal
+//Construct Binary tree , Inorder Traversal, Preorder Traversal and Postorder Traversal
 
 #include<iostream>
 using namespace std;
@@ -11,7 +11,7 @@ struct Node{
         data = value;
         left = right = NULL;
     }
-};
+};   
 
 Node* CreateTree(){
     int value;
@@ -41,8 +41,29 @@ void inorder(Node* root){
     inorder( root->left );
     cout<< root->data << " ";
     inorder( root->right);
-
 }
+
+//preorder traversal
+
+void preorder(Node* root){
+    if(root == NULL)
+        return;
+    cout << root->data <<" ";
+    preorder(root->left);
+    preorder(root->right);
+    
+}
+
+//postorder traversa
+
+void postorder(Node* root){
+    if(root == NULL)
+        return;
+    postorder(root->left);
+    postorder(root->right);
+    cout << root->data<< " ";
+}
+
 
 int main(){
     Node* root = NULL;
@@ -52,6 +73,12 @@ int main(){
 
     cout << "\nInorder Traversal: ";
     inorder(root);
+
+    cout << "\nPreorder Traversal: ";
+    preorder(root);
+
+    cout << "\nPostorder Traversal: ";
+    postorder(root);
 
     return 0;
 }
