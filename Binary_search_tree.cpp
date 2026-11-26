@@ -1,4 +1,4 @@
-//BST traversal inorder, preorder and postorder,search(x)
+//BST traversal inorder, preorder and postorder,search(x),del(x)
 #include<iostream>
 #include<queue>
 using namespace std;
@@ -98,6 +98,104 @@ Node* search(Node* root, int x){
     return NULL;
 }
 
+Node* del(Node* root, int x){
+
+    Node* r = root;
+    Node* p = NULL;
+
+    // Search for the node
+    while(r != NULL && r->data != x){
+        p = r;
+
+        if(x < r->data)
+            r = r->left;
+        else
+            r = r->right;
+    }
+
+    // Key does not exist
+    if(r == NULL){
+        cout << "Key does not exist in BST!";
+        return root;
+    }
+
+    // CASE 1: Node has no children
+    if(r->left == NULL && r->right == NULL){
+
+        if(p == NULL)
+            root = NULL;
+
+        else if(r == p->left)
+            p->left = NULL;
+
+        else
+            p->right = NULL;
+
+        delete r;
+    }
+
+    // CASE 2A: Only right child
+    else if(r->left == NULL){
+
+        Node* child = r->right;
+
+        if(p == NULL)
+            root = child;
+
+        else if(r == p->left)
+            p->left = child;
+
+        else
+            p->right = child;
+
+        delete r;
+    }
+
+    // CASE 2B: Only left child
+    else if(r->right == NULL){
+
+        Node* child = r->left;
+
+        if(p == NULL)
+            root = child;
+
+        else if(r == p->left)
+            p->left = child;
+
+        else
+            p->right = child;
+
+        delete r;
+    }
+
+    // CASE 3: Node has two children
+    else{
+
+        Node* suc = r->right;
+        Node* sp = r;
+
+        // Find inorder successor
+        while(suc->left != NULL){
+            sp = suc;
+            suc = suc->left;
+        }
+
+        // Replace data
+        r->data = suc->data;
+
+        // Remove successor from original position
+        if(sp == r)
+            sp->right = suc->right;
+        else
+            sp->left = suc->right;
+
+        delete suc;
+    }
+
+    return root;
+}
+
+
 int main(){
     Node* root = NULL;
     int n,val;
@@ -134,6 +232,20 @@ int main(){
         cout << x << " found in BST!";
     else
         cout << x << " does not exist. Search failed!";
+    
+
+    cout << "\nEnter value to delete: ";
+    cin >> x;
+
+    root = del(root, x);
+
+    cout << "\nInorder after deletion: ";
+    inorder(root);
+
+    cout << "\nLevel Order after deletion: ";
+    levelorder(root);
+
+    return 0;
 
 }
 
