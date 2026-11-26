@@ -1,4 +1,4 @@
-//BST traversal inorder, preorder and postorder
+//BST traversal inorder, preorder and postorder,search(x)
 #include<iostream>
 #include<queue>
 using namespace std;
@@ -40,16 +40,16 @@ void preorder(Node* root){
         return;
     
     cout<<root->data<<" ";
-    inorder(root->left);
-    inorder(root->right);
+    preorder(root->left);
+    preorder(root->right);
 }
 
 void postorder(Node* root){
     if(root == NULL)
         return;
     
-    inorder(root->left);
-    inorder(root->right);
+    postorder(root->left);
+    postorder(root->right);
     cout<<root->data<<" ";
 }
 
@@ -63,7 +63,7 @@ void levelorder(Node* root){
     while(!q.empty()){
         Node* temp = q.front();
         q.pop();
-        cout<<root->data<<" ";
+        cout << temp->data << " ";
 
         if(temp->left != NULL)
             q.push(temp->left);
@@ -71,6 +71,31 @@ void levelorder(Node* root){
         if(temp->right != NULL)
             q.push(temp->right);
     }
+}
+
+
+Node* search(Node* root, int x){
+
+    Node* r = root;
+
+    while(r != NULL){
+
+        if(r->data == x){
+            cout << x << " found in BST!";
+            return r;
+        }
+
+        else if(x < r->data){
+            r = r->left;
+        }
+
+        else{
+            r = r->right;
+        }
+    }
+
+    cout << x << " does not exist. Search failed!";
+    return NULL;
 }
 
 int main(){
@@ -95,6 +120,20 @@ int main(){
 
     cout << "\nPostOrder Traversal of BST: ";
     postorder(root);
+
+    cout << "\nLevel Order Traversal: ";
+    levelorder(root);
+
+    int x;
+    cout << "\nEnter what you want to search: ";
+    cin >> x;
+
+    Node* k = search(root, x);
+
+    if(k != NULL)
+        cout << x << " found in BST!";
+    else
+        cout << x << " does not exist. Search failed!";
 
 }
 
