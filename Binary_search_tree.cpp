@@ -1,5 +1,6 @@
 //BST traversal inorder, preorder and postorder
 #include<iostream>
+#include<queue>
 using namespace std;
 
 struct Node{
@@ -50,6 +51,26 @@ void postorder(Node* root){
     inorder(root->left);
     inorder(root->right);
     cout<<root->data<<" ";
+}
+
+void levelorder(Node* root){
+    if(root == NULL)
+        return;
+
+    queue<Node*>q;
+    q.push(root);
+
+    while(!q.empty()){
+        Node* temp = q.front();
+        q.pop();
+        cout<<root->data<<" ";
+
+        if(temp->left != NULL)
+            q.push(temp->left);
+
+        if(temp->right != NULL)
+            q.push(temp->right);
+    }
 }
 
 int main(){
