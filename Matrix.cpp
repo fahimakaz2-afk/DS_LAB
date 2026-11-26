@@ -24,7 +24,7 @@ void print(int** matrix, int row,int col){
 void mul(int** a, int** b, int** &c, int r1,int c1,int r2, int c2 ){
     if(c1 != r2){
         cout<<"Multiplication not possible";
-        c = nullptr;
+        c = NULL;
         return;
     }
 
@@ -77,7 +77,7 @@ int main(){
     cout<<"second matrix: "<<endl;
     print(b,row2,col2);
 
-    if(c != nullptr){ 
+    if(c != NULL){ 
         cout<<"Multiplication is:"<<endl;   
         print(c,row1,col2);
    
