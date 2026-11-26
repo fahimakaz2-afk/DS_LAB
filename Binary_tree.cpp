@@ -1,6 +1,7 @@
 //Construct Binary tree , Inorder Traversal, Preorder Traversal and Postorder Traversal
 
 #include<iostream>
+#include<queue>
 using namespace std;
 
 struct Node{
@@ -64,6 +65,25 @@ void postorder(Node* root){
     cout << root->data<< " ";
 }
 
+void levelorder(Node* root){
+    if(root == NULL)
+        return;
+    queue<Node*>q;
+    q.push(root);
+
+    while(!q.empty()){
+        Node* temp = q.front();
+        q.pop();
+
+        cout << temp->data <<" ";
+
+        if(temp->left != NULL)
+            q.push(temp->left);
+
+        if(temp->right != NULL)
+            q.push(temp->right);
+    }
+}
 
 int main(){
     Node* root = NULL;
@@ -79,6 +99,9 @@ int main(){
 
     cout << "\nPostorder Traversal: ";
     postorder(root);
+
+    cout << "\nLevel Order Traversal: ";
+    levelorder(root);
 
     return 0;
 }
